@@ -147,6 +147,34 @@ include('../includes/header.php');
       $('#add_receive').on('click', function(){
         $('#receive_modal').modal('show');
       });
+
+      $('#receive_form').on('submit', function () {
+
+          var receiveData = new FormData(this);
+
+          $.ajax({
+             method:'post',
+             url:'receiveController.php' ,
+              data:receiveData,
+              processData:false,
+              contentType:false,
+
+              success:function (result) {
+                  console.log(result);
+                 if (result === 'Receive Info Save Successfully'){
+                     location.reload(true);
+                 }
+
+
+
+              },
+              error:function (xhr) {
+                  console.log(xhr);
+              }
+          });
+
+          return false;
+      });
       </script>
     
 <?php include "../includes/footer.php";?>

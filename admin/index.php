@@ -85,7 +85,7 @@
                   <li>
                     <a><i class="fa fa-home"></i> Receive <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="receive/receive.php">Model-I(30")</a></li>
+                      <li><a href="receive/index.php">Model-I(30")</a></li>
                     </ul>
                   </li>
                 </ul>
