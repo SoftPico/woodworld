@@ -234,6 +234,14 @@ class Receive
     }
 
     public function read(){
-        
+        $sql = "SELECT * FROM receives";
+        $connection = $this->getConnection();
+        return $connection->query($sql);
     }
+
+
+
+
+
+
 }
