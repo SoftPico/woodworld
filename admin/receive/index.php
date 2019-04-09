@@ -45,6 +45,7 @@ require_once 'Receive.php';
                   <div class="x_content">
                       <?php
                       $receives = $receiveInfo->read();
+                      $size1TotalDoor1Info = $receiveInfo->size1TotalDoor1();
                       if ($receives->num_rows == 0){
                           echo "No record found";
                       }else {
@@ -77,19 +78,19 @@ require_once 'Receive.php';
                           <td><?php echo $record->size1_qty_per_door_1;?> </td>
                             <td>
                                 <?php
-                                $size1Qty1 = $record->size1_qty_1;
-                                $size1Qty1PerDoor1 = $record->size1_qty_per_door_1;
-                                $size1TotalDoor1 = (int)($size1Qty1/$size1Qty1PerDoor1);
-                                echo $size1TotalDoor1;
-                                 $size1ExtraTim1 = $size1Qty1 % $size1Qty1PerDoor1;
+                                echo $size1TotalDoor1Info;
                                 ?>
                             </td>
-                          <td><?php echo $size1ExtraTim1;?></td>
-                          <td rowspan="5" class="text-center">
+                          <td>
                               <?php
-                              echo $test= $size1TotalDoor1;
-
+                              $size1ExtraTimber1 = $receiveInfo->size1ExtraTimber1();
+                              echo $size1ExtraTimber1;
                               ?>
+                          </td>
+                          <td rowspan="5" class="text-center">
+                             <?php
+                             echo $receiveInfo->totalDoor();
+                             ?>
                           </td>
                           <td>
                             <li role="presentation" class="dropdown list-unstyled">
@@ -116,14 +117,16 @@ require_once 'Receive.php';
                           <td><?php echo $record->size2_qty_per_door_2;?> </td>
                               <td>
                                   <?php
-                                  $size2Qty2 = $record->size2_qty_2;
-                                  $size2Qty2PerDoor2 = $record->size2_qty_per_door_2;
-                                  $size2TotalDoor2 = (int)($size2Qty2/$size2Qty2PerDoor2);
-                                  echo $size2TotalDoor2;
-                                  $size2ExtraTim2 = $size2Qty2 % $size2Qty2PerDoor2;
+                                  $size2TotalDoor2Info = $receiveInfo->size2TotalDoor2();
+                                  echo $size2TotalDoor2Info;
                                   ?>
                               </td>
-                              <td><?php echo $size2ExtraTim2;?></td>
+                              <td>
+                                  <?php
+                                  $size2ExtraTimber2 = $receiveInfo->size2ExtraTimber2();
+                                  echo $size2ExtraTimber2;
+                                  ?>
+                              </td>
 
                           <td>
                             <li role="presentation" class="dropdown list-unstyled">
@@ -150,14 +153,16 @@ require_once 'Receive.php';
                           <td><?php echo $record->size3_qty_per_door_3;?> </td>
                               <td>
                                   <?php
-                                  $size3Qty3 = $record->size3_qty_3;
-                                  $size3Qty3PerDoor3 = $record->size3_qty_per_door_3;
-                                  $size3TotalDoor3 = (int)($size3Qty3 / $size3Qty3PerDoor3);
-                                  echo $size3TotalDoor3;
-                                  $size3ExtraTim3 = $size3Qty3 % $size3Qty3PerDoor3;
+                                  $size3TotalDoor3Info = $receiveInfo->size3TotalDoor3();
+                                  echo $size3TotalDoor3Info;
                                   ?>
                               </td>
-                              <td><?php echo $size3ExtraTim3;?></td>
+                              <td>
+                                  <?php
+                                  $size3ExtraTimber3 = $receiveInfo->size3ExtraTimber3();
+                                  echo $size3ExtraTimber3;
+                                  ?>
+                              </td>
 
                           <td>
                             <li role="presentation" class="dropdown list-unstyled">
@@ -184,14 +189,16 @@ require_once 'Receive.php';
                           <td><?php echo $record->size4_qty_per_door_4;?> </td>
                               <td>
                                   <?php
-                                  $size4Qty4 = $record->size4_qty_4;
-                                  $size4Qty4PerDoor4 = $record->size4_qty_per_door_4;
-                                  $size4TotalDoor4 = (int)($size4Qty4 / $size4Qty4PerDoor4);
-                                  echo $size4TotalDoor4;
-                                  $size4ExtraTim4 = $size4Qty4 % $size4Qty4PerDoor4;
+                                  $size4TotalDoor4Info = $receiveInfo->size4TotalDoor4();
+                                  echo $size4TotalDoor4Info;
                                   ?>
                               </td>
-                              <td><?php echo $size4ExtraTim4;?></td>
+                              <td>
+                                  <?php
+                                  $size4ExtraTimber4 = $receiveInfo->size4ExtraTimber4();
+                                  echo $size4ExtraTimber4;
+                                  ?>
+                              </td>
 
                           <td>
                             <li role="presentation" class="dropdown list-unstyled">
@@ -217,14 +224,16 @@ require_once 'Receive.php';
                           <td><?php echo $record->size5_qty_per_door_5;?> </td>
                               <td>
                                   <?php
-                                  $size5Qty5 = $record->size5_qty_5;
-                                  $size5Qty5PerDoor5 = $record->size5_qty_per_door_5;
-                                  $size5TotalDoor5 = (int)($size5Qty5 / $size5Qty5PerDoor5);
-                                  echo $size5TotalDoor5;
-                                  $size5ExtraTim5 = $size5Qty5 % $size5Qty5PerDoor5;
+                                  $size5TotalDoor5Info = $receiveInfo->size5TotalDoor5();
+                                  echo $size5TotalDoor5Info;
                                   ?>
                               </td>
-                              <td><?php echo $size5ExtraTim5;?></td>
+                              <td>
+                                  <?php
+                                  $size5ExtraTimber5 = $receiveInfo->size5ExtraTimber5();
+                                  echo $size5ExtraTimber5;
+                                  ?>
+                              </td>
 
                           <td>
                             <li role="presentation" class="dropdown list-unstyled">
