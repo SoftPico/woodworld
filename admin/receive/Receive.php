@@ -364,6 +364,78 @@ class Receive
         return $totalDoor;
     }
 
+    public function size1TotalTimber1(){
+        $record = $this->read();
+        if ($record->num_rows !==0) {
+            $records = $record->fetch_object();
+            $size1QtyPerDoor1 = $records->size1_qty_per_door_1;
+        }
+        $size1ExtraTimber1 = $this->size1ExtraTimber1();
+        $totalDoor = $this->totalDoor();
+        $size1TotalDoor1 = $this->size1TotalDoor1();
+
+        $size1TotalTimber1 = (($size1TotalDoor1-$totalDoor)*$size1QtyPerDoor1)+$size1ExtraTimber1;
+        return $size1TotalTimber1;
+
+    }
+    public function size2TotalTimber2(){
+        $record = $this->read();
+        if ($record->num_rows !==0) {
+            $records = $record->fetch_object();
+            $size2QtyPerDoor2 = $records->size2_qty_per_door_2;
+        }
+        $size2ExtraTimber2 = $this->size2ExtraTimber2();
+        $totalDoor = $this->totalDoor();
+        $size2TotalDoor2 = $this->size2TotalDoor2();
+
+        $size2TotalTimber2 = (($size2TotalDoor2-$totalDoor)*$size2QtyPerDoor2)+$size2ExtraTimber2;
+        return $size2TotalTimber2;
+
+    }
+    public function size3TotalTimber3(){
+        $record = $this->read();
+        if ($record->num_rows !==0) {
+            $records = $record->fetch_object();
+            $size3QtyPerDoor3 = $records->size3_qty_per_door_3;
+        }
+        $size3ExtraTimber3 = $this->size3ExtraTimber3();
+        $totalDoor = $this->totalDoor();
+        $size3TotalDoor3 = $this->size3TotalDoor3();
+
+        $size3TotalTimber3 = (($size3TotalDoor3-$totalDoor)*$size3QtyPerDoor3)+$size3ExtraTimber3;
+        return $size3TotalTimber3;
+
+    }
+    public function size4TotalTimber4(){
+        $record = $this->read();
+        if ($record->num_rows !==0) {
+            $records = $record->fetch_object();
+            $size4QtyPerDoor4 = $records->size4_qty_per_door_4;
+        }
+        $size4ExtraTimber4 = $this->size4ExtraTimber4();
+        $totalDoor = $this->totalDoor();
+        $size4TotalDoor4 = $this->size4TotalDoor4();
+
+        $size4TotalTimber4 = (($size4TotalDoor4-$totalDoor)*$size4QtyPerDoor4)+$size4ExtraTimber4;
+        return $size4TotalTimber4;
+
+    }
+    public function size5TotalTimber5(){
+        $record = $this->read();
+        if ($record->num_rows !==0) {
+            $records = $record->fetch_object();
+            $size5QtyPerDoor5 = $records->size5_qty_per_door_5;
+        }
+        $size5ExtraTimber5 = $this->size5ExtraTimber5();
+
+        $totalDoor = $this->totalDoor();
+        $size5TotalDoor5 = $this->size5TotalDoor5();
+
+        $size5TotalTimber5 = (($size5TotalDoor5-$totalDoor)*$size5QtyPerDoor5)+$size5ExtraTimber5;
+        return $size5TotalTimber5;
+
+    }
+
 
 
 

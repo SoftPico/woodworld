@@ -60,6 +60,7 @@ require_once 'Receive.php';
                           <th>Per Door QTY</th>
                           <th>Total Door(size by)</th>
                           <th>Extra timber</th>
+                          <th>Total timber</th>
                           <th>Total Door</th>
                           <th>Action</th>
                         </tr>
@@ -81,12 +82,19 @@ require_once 'Receive.php';
                                 echo $size1TotalDoor1Info;
                                 ?>
                             </td>
+
                           <td>
                               <?php
                               $size1ExtraTimber1 = $receiveInfo->size1ExtraTimber1();
                               echo $size1ExtraTimber1;
                               ?>
                           </td>
+                            <td>
+
+                                <?php
+                                echo $receiveInfo->size1TotalTimber1();
+                                ?>
+                            </td>
                           <td rowspan="5" class="text-center">
                              <?php
                              echo $receiveInfo->totalDoor();
@@ -127,6 +135,12 @@ require_once 'Receive.php';
                                   echo $size2ExtraTimber2;
                                   ?>
                               </td>
+                              <td>
+
+                                  <?php
+                                  echo $receiveInfo->size2TotalTimber2();
+                                  ?>
+                              </td>
 
                           <td>
                             <li role="presentation" class="dropdown list-unstyled">
@@ -161,6 +175,11 @@ require_once 'Receive.php';
                                   <?php
                                   $size3ExtraTimber3 = $receiveInfo->size3ExtraTimber3();
                                   echo $size3ExtraTimber3;
+                                  ?>
+                              </td>
+                              <td>
+                                  <?php
+                                  echo $receiveInfo->size3TotalTimber3();
                                   ?>
                               </td>
 
@@ -199,6 +218,11 @@ require_once 'Receive.php';
                                   echo $size4ExtraTimber4;
                                   ?>
                               </td>
+                              <td>
+                                  <?php
+                                  echo $receiveInfo->size4TotalTimber4();
+                                  ?>
+                              </td>
 
                           <td>
                             <li role="presentation" class="dropdown list-unstyled">
@@ -232,6 +256,11 @@ require_once 'Receive.php';
                                   <?php
                                   $size5ExtraTimber5 = $receiveInfo->size5ExtraTimber5();
                                   echo $size5ExtraTimber5;
+                                  ?>
+                              </td>
+                              <td>
+                                  <?php
+                                  echo $receiveInfo->size5TotalTimber5();
                                   ?>
                               </td>
 
