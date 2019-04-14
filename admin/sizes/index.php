@@ -145,8 +145,7 @@ $sizeObj = new Size();
                                 <thead>
                                 <tr>
                                     <th>Sizes</th>
-                                    <th>Idl Qty</th>
-                                    <th>Age</th>
+                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -158,17 +157,13 @@ $sizeObj = new Size();
                                 ?>
                                 <tr>
                                     <td><?php echo $record->size;?></td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>2011/04/25</td>
+                                    <td><?php echo $record->description;?></td>
+                                    <td>
+                                      <button class="btn btn-sm btn-primary size_edit" data-id="<?php echo $record->id; ?>">Edit</button>
+                                      <button data-id="<?php echo $record->id; ?>" class="btn btn-sm btn-danger size_delete">Delete</button>
+                                    </td>
                                 </tr>
                                 <?php } ?>
-                                <tr>
-                                    <td>Donna Snider</td>
-                                    <td>Customer Support</td>
-                                    <td>New York</td>
-                                    <td>2011/01/25</td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -234,18 +229,24 @@ $sizeObj = new Size();
             </div>
             <div class="modal-body">
               <form id="size_form">
-                  <input type="hidden" name="id">
+                  <input type="hidden" name="id" id="size_id">
                 <div class="form-group row">
-                  <label for="size" class="col-sm-2 col-form-label">Size</label>
-                  <div class="col-sm-10">
+                  <label for="size" class="col-sm-3 col-form-label">Size</label>
+                  <div class="col-sm-9">
                     <input type="text" class="form-control" id="size" name="size">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="description" class="col-sm-3 col-form-label">Description</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" id="description" name="description"></textarea>
                   </div>
                 </div>
 
                 <div class="row form-group float-right">
                   <div class="col-sm-12">
                     <button type="button" class="btn btn-secondary btn-sm mr-1" data-dismiss="modal">Cancel</button>
-                    <button type="submit" id="submit" class="btn btn-primary btn-sm">Save</button>
+                    <button type="submit" id="btn_submit" class="btn btn-primary btn-sm">Save</button>
                   </div>
                 </div>
 
@@ -276,7 +277,7 @@ $sizeObj = new Size();
 
              success:function (result) {
                  console.log(result);
-                 if (result === 'Size Info Save Successfully') {
+                 if (result === 'Size Info Save Successfully' || result === 'Size Updated Successfully') {
                      location.reload(true);
                  }
              },
@@ -289,6 +290,61 @@ $sizeObj = new Size();
 
         return false;
     });
+
+      $('.size_edit').on('click', function(){
+      
+        var id = $(this).data('id');
+
+        $.ajax({
+          method: 'get',
+          url: 'sizeController.php',
+          data:{
+            'id' : id,
+            'operation' : 'edit'
+          },
+          success: function(result){
+            console.log(result);
+            var sizeInformation = $.parseJSON(result);
+            console.log(sizeInformation);
+            $('#size_id').val(sizeInformation.id);
+            $('#size').val(sizeInformation.size);
+            $('#description').val(sizeInformation.description);
+            $('#btn_submit').text('Update');
+            $('#sizes_modal').modal('show');
+
+          },
+          error: function(xhr){
+            console.log(xhr);
+          }
+        });
+
+        return false;
+
+      });
+
+      // Delete
+      $('.size_delete').on('click', function () {
+                var id = $(this).data('id');
+                $.ajax({
+                    method: 'get',
+                    url: 'sizeController.php',
+                    data: {
+                        'id': id,
+                        'operation': 'delete'
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        if (result === 'Size Deleted Successfully') {
+                            location.reload(true);
+                        }
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    }
+                });
+                console.log(id);
+                return false;
+            });
 
       </script>
 
