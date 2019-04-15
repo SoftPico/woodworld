@@ -263,7 +263,7 @@ $woodNames = new Woodname();
         $('#description').val('');
         $('#btn_submit').text('Save');
         return true;
-    });
+       });
 
       </script>
 

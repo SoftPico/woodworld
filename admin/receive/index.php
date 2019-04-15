@@ -1,336 +1,255 @@
+<?php include("../includes/header_link.php");
 
-<?php
-include('../includes/header.php');
-require_once '../DBconnection.php';
-require_once 'Receive.php';
-
- $receiveInfo = new Receive();
 
 ?>
 
+<body id="page-top">
 
-        <!-- /top navigation -->
-        <?php include "../includes/sidebar.php";?>
-        <!-- page content -->
-        <div class="right_col" role="main">
-            
-       
-      <!-- Start Table data 1 -->
-      <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                <div>
-                    <button id="add_receive" type="button" class="btn btn-success">Add receive</button>
-                </div>
-                  <div class="x_title">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-                    <h2>Model: ww-09 <small>Users</small></h2>
-                    
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                      <?php
-                      $receives = $receiveInfo->read();
-                      $size1TotalDoor1Info = $receiveInfo->size1TotalDoor1();
-                      if ($receives->num_rows == 0){
-                          echo "No record found";
-                      }else {
+    <!-- Sidebar -->
+
+    <?php include("../includes/sidebar.php");?>
+
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <?php include("../includes/header.php");?>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          
+
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <button  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" id="add_wood_name">
+              <i class="fas fa-plus fa-sm text-white-50"></i> Add Products
+            </button>
+          </div>
 
 
-                      ?>
-                    <table id="datatable-buttons" class="table table-striped table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Sizes</th>
-                          <th>Total QTY</th>
-                          <th>Per Door QTY</th>
-                          <th>Total Door(size by)</th>
-                          <th>Extra timber</th>
-                          <th>Total timber</th>
-                          <th>Total Door</th>
-                          <th>Action</th>
-                        </tr>
-                      </thead>
+            <div class="row">
+                
+            </div>
 
-                      <tbody>
-                      <?php
-                      while ($record = $receives->fetch_object()){
-                          $i=1;
-
-
-                      ?>
-                        <tr>
-                          <td>Size <?php echo $i++;?></td>
-                          <td><?php echo $record->size1_qty_1;?> </td>
-                          <td><?php echo $record->size1_qty_per_door_1;?> </td>
-                            <td>
-                                <?php
-                                echo $size1TotalDoor1Info;
-                                ?>
-                            </td>
-
-                          <td>
-                              <?php
-                              $size1ExtraTimber1 = $receiveInfo->size1ExtraTimber1();
-                              echo $size1ExtraTimber1;
-                              ?>
-                          </td>
-                            <td>
-
-                                <?php
-                                echo $receiveInfo->size1TotalTimber1();
-                                ?>
-                            </td>
-                          <td rowspan="5" class="text-center">
-                             <?php
-                             echo $receiveInfo->totalDoor();
-                             ?>
-                          </td>
-                          <td>
-                            <li role="presentation" class="dropdown list-unstyled">
-                              <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                                          Action
-                                          <span class="caret"></span>
-                                      </a>
-                              <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">view</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">edit</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">delete</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">delivery</a>
-                                </li>
-                              </ul>
-                            </li>
-                          </td>
-                        </tr>
-                          <tr>
-                          <td>Size <?php echo $i++;?></td>
-                          <td><?php echo $record->size2_qty_2;?> </td>
-                          <td><?php echo $record->size2_qty_per_door_2;?> </td>
-                              <td>
-                                  <?php
-                                  $size2TotalDoor2Info = $receiveInfo->size2TotalDoor2();
-                                  echo $size2TotalDoor2Info;
-                                  ?>
-                              </td>
-                              <td>
-                                  <?php
-                                  $size2ExtraTimber2 = $receiveInfo->size2ExtraTimber2();
-                                  echo $size2ExtraTimber2;
-                                  ?>
-                              </td>
-                              <td>
-
-                                  <?php
-                                  echo $receiveInfo->size2TotalTimber2();
-                                  ?>
-                              </td>
-
-                          <td>
-                            <li role="presentation" class="dropdown list-unstyled">
-                              <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                                          Action
-                                          <span class="caret"></span>
-                                      </a>
-                              <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">view</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">edit</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">delete</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">delivery</a>
-                                </li>
-                              </ul>
-                            </li>
-                          </td>
-                        </tr>
-                          <tr>
-                          <td>Size <?php echo $i++;?></td>
-                          <td><?php echo $record->size3_qty_3;?> </td>
-                          <td><?php echo $record->size3_qty_per_door_3;?> </td>
-                              <td>
-                                  <?php
-                                  $size3TotalDoor3Info = $receiveInfo->size3TotalDoor3();
-                                  echo $size3TotalDoor3Info;
-                                  ?>
-                              </td>
-                              <td>
-                                  <?php
-                                  $size3ExtraTimber3 = $receiveInfo->size3ExtraTimber3();
-                                  echo $size3ExtraTimber3;
-                                  ?>
-                              </td>
-                              <td>
-                                  <?php
-                                  echo $receiveInfo->size3TotalTimber3();
-                                  ?>
-                              </td>
-
-                          <td>
-                            <li role="presentation" class="dropdown list-unstyled">
-                              <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                                          Action
-                                          <span class="caret"></span>
-                                      </a>
-                              <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">view</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">edit</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">delete</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">delivery</a>
-                                </li>
-                              </ul>
-                            </li>
-                          </td>
-                        </tr>
-                          <tr>
-                          <td>Size <?php echo $i++;?></td>
-                          <td><?php echo $record->size4_qty_4;?> </td>
-                          <td><?php echo $record->size4_qty_per_door_4;?> </td>
-                              <td>
-                                  <?php
-                                  $size4TotalDoor4Info = $receiveInfo->size4TotalDoor4();
-                                  echo $size4TotalDoor4Info;
-                                  ?>
-                              </td>
-                              <td>
-                                  <?php
-                                  $size4ExtraTimber4 = $receiveInfo->size4ExtraTimber4();
-                                  echo $size4ExtraTimber4;
-                                  ?>
-                              </td>
-                              <td>
-                                  <?php
-                                  echo $receiveInfo->size4TotalTimber4();
-                                  ?>
-                              </td>
-
-                          <td>
-                            <li role="presentation" class="dropdown list-unstyled">
-                              <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                                          Action
-                                          <span class="caret"></span>
-                                      </a>
-                              <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">view</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">edit</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">delete</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">delivery</a>
-                                </li>
-                              </ul>
-                            </li>
-                          </td>
-                        </tr><tr>
-                          <td>Size <?php echo $i++;?></td>
-                          <td><?php echo $record->size5_qty_5;?> </td>
-                          <td><?php echo $record->size5_qty_per_door_5;?> </td>
-                              <td>
-                                  <?php
-                                  $size5TotalDoor5Info = $receiveInfo->size5TotalDoor5();
-                                  echo $size5TotalDoor5Info;
-                                  ?>
-                              </td>
-                              <td>
-                                  <?php
-                                  $size5ExtraTimber5 = $receiveInfo->size5ExtraTimber5();
-                                  echo $size5ExtraTimber5;
-                                  ?>
-                              </td>
-                              <td>
-                                  <?php
-                                  echo $receiveInfo->size5TotalTimber5();
-                                  ?>
-                              </td>
-
-                          <td>
-                            <li role="presentation" class="dropdown list-unstyled">
-                              <a id="drop4" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                                          Action
-                                          <span class="caret"></span>
-                                      </a>
-                              <ul id="menu6" class="dropdown-menu animated fadeInDown" role="menu">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">view</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">edit</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">delete</a>
-                                </li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://twitter.com/fat">delivery</a>
-                                </li>
-                              </ul>
-                            </li>
-                          </td>
-                        </tr>
-                      <?php }?>
-
-                      </tbody>
-                    </table>
-                      <?php }?>
-                  </div>
-                </div>
-              </div>
-<!--End Table data 1 -->
+          <!--End main container -->
 
         </div>
-    <br>
+        <!-- /.container-fluid -->
 
-    <!-- modal -->
-    <?php include('../Modals/receive_modal.php');?>
+        <!-- add wood name Modal -->
 
-    <script language="javascript">
-      $('#add_receive').on('click', function(){
-        $('#receive_modal').modal('show');
+        <div class="modal fade" id="wood_name_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Products</h5>
+              <button type="button" class="close wood_name_modal_close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <form id="wood_name_form">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th scope="col">Sizes</th>
+                        <th scope="col">Mehgony</th>
+                        <th scope="col">Neem</th>
+                        <th scope="col">Koray</th>
+                        <th scope="col">Koray</th>
+                        <th scope="col">Koray</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <input class="form-control" type="text" name="" id="">
+                        </td>
+                        <td>
+                          <input class="form-control" type="text" name="" id="">
+                        </td>
+                        <td>
+                          <input class="form-control" type="text" name="" id="">
+                        </td>
+                        <td>
+                          <input class="form-control" type="text" name="" id="">
+                        </td>
+                        <td>
+                          <input class="form-control" type="text" name="" id="">
+                        </td>
+                        <td>
+                          <input class="form-control" type="text" name="" id="">
+                        </td>
+                      </tr>
+                    </tbody>
+
+                    <!-- add more button -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                      <button  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" id="add_more">
+                        <i class="fas fa-plus fa-sm text-white-50"></i> Add More
+                      </button>
+                    </div>
+                  </table>
+
+                <div class="row form-group float-right">
+                  <div class="col-sm-12">
+                    <button type="button" class="btn btn-secondary btn-sm mr-1 wood_name_modal_close" data-dismiss="modal">Cancel</button>
+                    <button type="submit" id="btn_submit" class="btn btn-primary btn-sm">Save</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- End add sizes Modal -->
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="confirmation_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                  <button type="button" class="close" id="confirmation_modal_close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                   Do you really want to delete this record?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-sm btn-info btn_confirmation" data-value="no">No</button>
+                  <button type="button" class="btn btn-sm btn-danger btn_confirmation" data-value="yes">Yes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+      <!-- End of Main Content -->
+
+      <script language="javascript">
+      $('#add_wood_name').on('click', function(){
+        $('#wood_name_modal').modal('show');
       });
 
-      $('#receive_form').on('submit', function () {
+      $('#wood_name_form').on('submit', function () {
+         var formData = new FormData(this);
 
-          var receiveData = new FormData(this);
-
-          $.ajax({
+         $.ajax({
              method:'post',
-             url:'receiveController.php' ,
-              data:receiveData,
-              processData:false,
-              contentType:false,
+             url:'woodNameController.php',
+             data:formData,
+             processData:false,
+             contentType:false,
 
-              success:function (result) {
-                  console.log(result);
-                 if (result === 'Receive Info Save Successfully'){
+             success:function (result) {
+                 console.log(result);
+                 if (result === 'Wood Name Info Save Successfully' || result === 'Wood Name Updated Successfully') {
+                  $('.wood_name_modal_close').click();
                      location.reload(true);
                  }
+             },
+             error:function (xhr) {
+                 console.log(xhr);
+             }
+
+         });
 
 
+        return false;
+    });
 
+      $('.wood_name_edit').on('click', function(){
+      
+        var id = $(this).data('id');
+
+        $.ajax({
+          method: 'get',
+          url: 'woodNameController.php',
+          data:{
+            'id' : id,
+            'operation' : 'edit'
+          },
+          success: function(result){
+            console.log(result);
+            var woodNameInformation = $.parseJSON(result);
+            console.log(woodNameInformation);
+            $('#wood_name_id').val(woodNameInformation.id);
+            $('#wood_name').val(woodNameInformation.wood_name);
+            $('#description').val(woodNameInformation.description);
+            $('#btn_submit').text('Update');
+            $('#wood_name_modal').modal('show');
+
+          },
+          error: function(xhr){
+            console.log(xhr);
+          }
+        });
+
+        return false;
+
+      });
+
+      // Delete
+      $('.wood_name_delete').on('click', function () {
+          var id = $(this).data('id');
+          
+            <!-- conformation deleted modals -->
+            $('#confirmation_modal').modal('show');
+            $('.btn_confirmation').on('click', function (){
+            var btnValue = $(this).data('value');
+          
+          if (btnValue === 'yes') {
+             $.ajax({
+              method: 'get',
+              url: 'woodNameController.php',
+              data: {
+                  'id': id,
+                  'operation': 'delete'
               },
-              error:function (xhr) {
+              success: function (result) {
+                  console.log(result);
+                  if (result === 'Wood Name Deleted Successfully') {
+                      location.reload(true);
+                  }
+              },
+              error: function (xhr) {
                   console.log(xhr);
               }
-          });
+            });
 
+          } else {
+            $('#confirmation_modal_close').click();
+          }
+        });
           return false;
       });
+
+
+      $('.wood_name_modal_close').on('click', function () {
+        $('#wood_name_id').val('');
+        $('#wood_name').val('');
+        $('#description').val('');
+        $('#btn_submit').text('Save');
+        return true;
+       });
+
       </script>
-    
-<?php include "../includes/footer.php";?>
+
+
+      <!-- Footer -->
+     <?php include("../includes/footer.php");?>
