@@ -257,6 +257,29 @@ $sizeObj = new Size();
       </div>
         <!-- End add sizes Modal -->
 
+
+          <!-- Modal -->
+          <div class="modal fade" id="confirmation_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                  <button type="button" class="close" id="confirmation_modal_close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                   Do you really want to delete this record?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-sm btn-info btn_confirmation" data-value="no">No</button>
+                  <button type="button" class="btn btn-sm btn-danger btn_confirmation" data-value="yes">Yes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
       </div>
       <!-- End of Main Content -->
 
@@ -324,27 +347,38 @@ $sizeObj = new Size();
 
       // Delete
       $('.size_delete').on('click', function () {
-                var id = $(this).data('id');
-                $.ajax({
-                    method: 'get',
-                    url: 'sizeController.php',
-                    data: {
-                        'id': id,
-                        'operation': 'delete'
-                    },
-                    success: function (result) {
-                        console.log(result);
-                        if (result === 'Size Deleted Successfully') {
-                            location.reload(true);
-                        }
-                    },
-                    error: function (xhr) {
-                        console.log(xhr);
-                    }
-                });
-                console.log(id);
-                return false;
+          var id = $(this).data('id');
+          
+            <!-- conformation deleted modals -->
+            $('#confirmation_modal').modal('show');
+            $('.btn_confirmation').on('click', function (){
+            var btnValue = $(this).data('value');
+          
+          if (btnValue === 'yes') {
+             $.ajax({
+              method: 'get',
+              url: 'sizeController.php',
+              data: {
+                  'id': id,
+                  'operation': 'delete'
+              },
+              success: function (result) {
+                  console.log(result);
+                  if (result === 'Size Deleted Successfully') {
+                      location.reload(true);
+                  }
+              },
+              error: function (xhr) {
+                  console.log(xhr);
+              }
             });
+
+          } else {
+            $('#confirmation_modal_close').click();
+          }
+        });
+          return false;
+      });
 
       </script>
 
