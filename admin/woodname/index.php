@@ -1,6 +1,7 @@
 <?php include("../includes/header_link.php");
-require_once("Size.php");
-$sizeObj = new Size();
+require_once("Woodname.php");
+$woodNames = new Woodname();
+
 ?>
 
 <body id="page-top">
@@ -27,97 +28,87 @@ $sizeObj = new Size();
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            
-          </div>
-
-          <!-- main container -->
+          
 
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" id="add_sizes">
-              <i class="fas fa-plus fa-sm text-white-50"></i> Add Sizes
-            </a>
+            <button  class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" id="add_wood_name">
+              <i class="fas fa-plus fa-sm text-white-50"></i> Add Wood Name
+            </button>
           </div>
 
 
-<!--          Size Table-->
-            <div class="row">
+<div class="row">
                 <div class="col-md-12">
                     <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Sizes Table</h6>
-                    </div>
-                    <div class="card-body">
-                        <?php
-                        $sizeInfo = $sizeObj->read();
-                        $sizeRecord = $sizeObj->getSize();
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Wood Name Table</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                      <?php
+                                $woodNameInfo = $woodNames->read();
+                              
 
-                        if ($sizeInfo->num_rows === 0){
-                            echo "No Data Found!";
-                        }else{
-                        ?>
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                <tr>
-                                    <th>Sizes</th>
-                                    <th>Description</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                while($record = $sizeInfo->fetch_object()){
+                                if ($woodNameInfo->num_rows === 0){
+                                    echo "No Data Found!";
+                                }else{
+                                ?>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                      <tr>
+                                          <th>Wood Name</th>
+                                          <th>Description</th>
+                                          <th>Action</th>
+                                      </tr>
+                                      </thead>
+                                    <tbody>
+                                      <?php
+                                while($record = $woodNameInfo->fetch_object()){
 
 
                                 ?>
-                                <tr>
-                                    <td><?php echo $record->size;?></td>
-                                    <td><?php echo $record->description;?></td>
-                                    <td>
-                                      <button class="btn btn-sm btn-primary size_edit" data-id="<?php echo $record->id; ?>">Edit</button>
-                                      <button data-id="<?php echo $record->id; ?>" class="btn btn-sm btn-danger size_delete">Delete</button>
-                                    </td>
-                                </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
+                                      <tr>
+                                          <td><?php echo $record->wood_name;?></td>
+                                          <td><?php echo $record->description;?></td>
+                                          <td>
+                                            <button class="btn btn-sm btn-primary wood_name_edit" data-id="<?php echo $record->id; ?>">Edit</button>
+                                            <button data-id="<?php echo $record->id; ?>" class="btn btn-sm btn-danger wood_name_delete">Delete</button>
+                                          </td>
+                                      </tr>
+                                  <?php }?>
+                                    </tbody>
+                                </table>
+                              <?php }?>
+                            </div>
                         </div>
-
-                        <?php } ?>
                     </div>
                 </div>
-                </div>
-              
             </div>
-
-<!--         End Size Table-->
 
           <!--End main container -->
 
         </div>
         <!-- /.container-fluid -->
 
-        <!-- add sizes Modal -->
+        <!-- add wood name Modal -->
 
-        <div class="modal fade" id="sizes_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="wood_name_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Add sizes</h5>
-              <button type="button" class="close size_modal_close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close wood_name_modal_close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
             <div class="modal-body">
-              <form id="size_form">
-                  <input type="hidden" name="id" id="size_id">
+              <form id="wood_name_form">
+                  <input type="hidden" name="id" id="wood_name_id">
                 <div class="form-group row">
-                  <label for="size" class="col-sm-3 col-form-label">Size</label>
+                  <label for="wood_name" class="col-sm-3 col-form-label">Wood Name</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="size" name="size">
+                    <input type="text" class="form-control" id="wood_name" name="wood_name">
                   </div>
                 </div>
                 <div class="form-group row">
@@ -129,7 +120,7 @@ $sizeObj = new Size();
 
                 <div class="row form-group float-right">
                   <div class="col-sm-12">
-                    <button type="button" class="btn btn-secondary btn-sm mr-1 size_modal_close" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary btn-sm mr-1 wood_name_modal_close" data-dismiss="modal">Cancel</button>
                     <button type="submit" id="btn_submit" class="btn btn-primary btn-sm">Save</button>
                   </div>
                 </div>
@@ -168,24 +159,24 @@ $sizeObj = new Size();
       <!-- End of Main Content -->
 
       <script language="javascript">
-      $('#add_sizes').on('click', function(){
-        $('#sizes_modal').modal('show');
+      $('#add_wood_name').on('click', function(){
+        $('#wood_name_modal').modal('show');
       });
 
-      $('#size_form').on('submit', function () {
+      $('#wood_name_form').on('submit', function () {
          var formData = new FormData(this);
 
          $.ajax({
              method:'post',
-             url:'sizeController.php',
+             url:'woodNameController.php',
              data:formData,
              processData:false,
              contentType:false,
 
              success:function (result) {
                  console.log(result);
-                 if (result === 'Size Info Save Successfully' || result === 'Size Updated Successfully') {
-                  $('.size_modal_close').click();
+                 if (result === 'Wood Name Info Save Successfully' || result === 'Wood Name Updated Successfully') {
+                  $('.wood_name_modal_close').click();
                      location.reload(true);
                  }
              },
@@ -199,26 +190,26 @@ $sizeObj = new Size();
         return false;
     });
 
-      $('.size_edit').on('click', function(){
+      $('.wood_name_edit').on('click', function(){
       
         var id = $(this).data('id');
 
         $.ajax({
           method: 'get',
-          url: 'sizeController.php',
+          url: 'woodNameController.php',
           data:{
             'id' : id,
             'operation' : 'edit'
           },
           success: function(result){
             console.log(result);
-            var sizeInformation = $.parseJSON(result);
-            console.log(sizeInformation);
-            $('#size_id').val(sizeInformation.id);
-            $('#size').val(sizeInformation.size);
-            $('#description').val(sizeInformation.description);
+            var woodNameInformation = $.parseJSON(result);
+            console.log(woodNameInformation);
+            $('#wood_name_id').val(woodNameInformation.id);
+            $('#wood_name').val(woodNameInformation.wood_name);
+            $('#description').val(woodNameInformation.description);
             $('#btn_submit').text('Update');
-            $('#sizes_modal').modal('show');
+            $('#wood_name_modal').modal('show');
 
           },
           error: function(xhr){
@@ -231,7 +222,7 @@ $sizeObj = new Size();
       });
 
       // Delete
-      $('.size_delete').on('click', function () {
+      $('.wood_name_delete').on('click', function () {
           var id = $(this).data('id');
           
             <!-- conformation deleted modals -->
@@ -242,14 +233,14 @@ $sizeObj = new Size();
           if (btnValue === 'yes') {
              $.ajax({
               method: 'get',
-              url: 'sizeController.php',
+              url: 'woodNameController.php',
               data: {
                   'id': id,
                   'operation': 'delete'
               },
               success: function (result) {
                   console.log(result);
-                  if (result === 'Size Deleted Successfully') {
+                  if (result === 'Wood Name Deleted Successfully') {
                       location.reload(true);
                   }
               },
@@ -265,13 +256,14 @@ $sizeObj = new Size();
           return false;
       });
 
-      $('.size_modal_close').on('click', function () {
-        $('#size_id').val('');
-        $('#size').val('');
+
+      $('.wood_name_modal_close').on('click', function () {
+        $('#wood_name_id').val('');
+        $('#wood_name').val('');
         $('#description').val('');
         $('#btn_submit').text('Save');
         return true;
-       });
+    });
 
       </script>
 

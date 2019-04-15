@@ -7,7 +7,7 @@ class DBconnection
     private $username = 'root';
     private $password = '';
 
-    private $db = 'wood_world';
+    private $db = 'woodworld';
     private $connection;
 
 
