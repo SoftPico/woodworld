@@ -141,7 +141,19 @@ class Receive
     }
 
     public function read(){
-        $sql = "SELECT * FROM receives";
+        $sql = 'SELECT 
+                        tbl_receive.id, 
+                        tbl_receive.jm_qty, 
+                        tbl_size.size, 
+                        tbl_receive.bt_qty, 
+                        tbl_receive.ct_qty, 
+                        tbl_receive.cg_qty
+                        FROM
+                        (SELECT id, size_id, jm_qty, bt_qty, ct_qty, cg_qty FROM `receives`) tbl_receive
+                        LEFT OUTER JOIN
+                        (SELECT id, size FROM sizes) tbl_size
+                        ON tbl_receive.size_id = tbl_size.id;';
+
         $connection = $this->getConnection();
         return $connection->query($sql);
     }
