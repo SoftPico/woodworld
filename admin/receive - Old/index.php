@@ -69,7 +69,6 @@
 
       <INPUT type="button" class="btn btn-danger btn-sm" value="-" onclick="deleteRow('dataTable')" />
       <form id="receive_form">
-        <input type="hidden" name="id" id="receive_id">
         <table class="table table-stripe">
           <tr>
             <th></th>
@@ -252,7 +251,81 @@
         return true;
        });
 
-// receive script
+// test
+        $(document).ready(function(){
+         var count = 1;
+         $('#add').click(function(){
+          count = count + 1;
+          var html_code = "<tr id='row"+count+"'>";
+           html_code += "<td contenteditable='true' class='size_id'></td>";
+           html_code += "<td contenteditable='true' class='item_1'></td>";
+           html_code += "<td contenteditable='true' class='item_2'></td>";
+           html_code += "<td contenteditable='true' class='item_3' ></td>";
+           html_code += "<td contenteditable='true' class='item_4' ></td>";
+           html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>-</button></td>";   
+           html_code += "</tr>";  
+           $('#crud_table').append(html_code);
+         });
+         
+         $(document).on('click', '.remove', function(){
+          var delete_row = $(this).data("row");
+          $('#' + delete_row).remove();
+         });
+         
+         $('#save').click(function(){
+          var size_id = [];
+          var item_1 = [];
+          var item_2 = [];
+          var item_3 = [];
+          var item_4 = [];
+          $('.size_id').each(function(){
+           size_id.push($(this).text());
+          });
+          $('.item_1').each(function(){
+           item_1.push($(this).text());
+          });
+          $('.item_2').each(function(){
+           item_2.push($(this).text());
+          });
+          $('.item_3').each(function(){
+           item_3.push($(this).text());
+          });
+          $('.item_4').each(function(){
+           item_4.push($(this).text());
+          });
+          $.ajax({
+           url:"receiveController.php",
+           method:"POST",
+           data:{size_id:size_id, item_1:item_1, item_2:item_2, item_3:item_3, item_4:item_4},
+           success:function(data){
+            alert(data);
+            $("td[contentEditable='true']").text("");
+            for(var i=2; i<= count; i++)
+            {
+             $('tr#'+i+'').remove();
+            }
+            fetch_item_data();
+           }
+          });
+         });
+         
+         function fetch_item_data()
+         {
+          $.ajax({
+           url:"Receive.php",
+           method:"POST",
+           success:function(data)
+           {
+            $('#inserted_item_data').html(data);
+           }
+          })
+         }
+         fetch_item_data();
+         
+        });
+
+
+
     function addRow(tableID) {
 
       var table = document.getElementById(tableID);
@@ -317,9 +390,6 @@
         contentType: false,
         success: function(result){
           console.log(result);
-          if (result === 'Receive Info Save Successfully') {
-            location.reload(true);
-          }
 
         },
         error: function(xhr){
