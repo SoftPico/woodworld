@@ -218,6 +218,7 @@ $receObj = new Receive();
                     data:form_data,
                     success:function(data)
                     {
+                        console.log(data);
                         if(data == 'ok')
                         {
                             $('#item_table').find("tr:gt(0)").remove();
